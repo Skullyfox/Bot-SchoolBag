@@ -1,6 +1,9 @@
 const Discord = require('discord.js'),
       client = new Discord.Client(),
-      help   =  require('./Task/Help');
+      help   =  require('./Task/Help'),
+      token = process.env.TOKEN;
+
+client.login(token);
 
 module.exports = {
 
