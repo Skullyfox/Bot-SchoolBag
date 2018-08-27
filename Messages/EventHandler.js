@@ -14,9 +14,17 @@ module.exports = {
   },
 
   newMember: member => {
-    const channel = member.guild.channels.find('name', process.env.CHANNEL_WELCOME);
-    const defaultRole = member.guild.roles.find('name', process.env.DEFAULT_ROLE);
-    channel.send(`💠 Bienvenue sur notre serveur ${member} ! 💠`)
+    const channel = member.guild.channels.find('name', process.env.CHANNEL_WELCOME),
+          defaultRole = member.guild.roles.find('name', process.env.DEFAULT_ROLE);
+
+    channel.send(`${member}`,new Discord.RichEmbed()
+            .setAuthor(client.user.username,client.user.avatarURL)
+            .setTitle("💠 Bienvenue sur notre serveur ! 💠")
+            .setColor(7385958)
+            .setThumbnail(member.user.avatarURL)
+            .setTimestamp()
+            .addField(`Le Message de bienvenue n'est pas encore défini, mon créateur à eu la flemme de l'écrire.`)
+    );
     member.addRole(defaultRole).catch(console.error)
   },
 
